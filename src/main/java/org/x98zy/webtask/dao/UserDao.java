@@ -2,7 +2,7 @@ package org.x98zy.webtask.dao;
 
 import org.x98zy.webtask.model.User;
 import org.x98zy.webtask.model.UserRole;
-import org.x98zy.webtask.config.DatabaseConnection;
+import org.x98zy.webtask.connection.DatabaseConnection;
 import org.x98zy.webtask.exception.WebTaskException;
 
 import java.sql.*;

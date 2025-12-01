@@ -1,4 +1,4 @@
-package org.x98zy.webtask.config;
+package org.x98zy.webtask.connection;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
