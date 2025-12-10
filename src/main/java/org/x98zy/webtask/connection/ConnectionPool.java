@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class DatabaseConnection {
-    private static final Logger logger = LoggerFactory.getLogger(DatabaseConnection.class);
+public class ConnectionPool {
+    private static final Logger logger = LoggerFactory.getLogger(ConnectionPool.class);
     private static final HikariDataSource dataSource;
 
     static {

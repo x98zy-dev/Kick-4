@@ -2,7 +2,7 @@ package org.x98zy.webtask.dao;
 
 import org.x98zy.webtask.model.Advertisement;
 import org.x98zy.webtask.model.AdvertisementStatus;
-import org.x98zy.webtask.connection.DatabaseConnection;
+import org.x98zy.webtask.connection.ConnectionPool;
 import org.x98zy.webtask.exception.WebTaskException;
 
 import java.sql.*;
@@ -16,7 +16,7 @@ public class AdvertisementDao {
         String sql = "INSERT INTO advertisements (title, description, price, city, category_id, user_id, status, image_path) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection connection = DatabaseConnection.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, advertisement.getTitle());
@@ -54,7 +54,7 @@ public class AdvertisementDao {
     public List<Advertisement> findByUserId(Long userId) throws WebTaskException {
         String sql = "SELECT * FROM advertisements WHERE user_id = ? ORDER BY created_at DESC";
 
-        try (Connection connection = DatabaseConnection.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setLong(1, userId);
@@ -69,7 +69,7 @@ public class AdvertisementDao {
     public Optional<Advertisement> findById(Long id) throws WebTaskException {
         String sql = "SELECT * FROM advertisements WHERE id = ?";
 
-        try (Connection connection = DatabaseConnection.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setLong(1, id);
@@ -90,7 +90,7 @@ public class AdvertisementDao {
                 "category_id = ?, status = ?, image_path = ?, updated_at = CURRENT_TIMESTAMP " +
                 "WHERE id = ? AND user_id = ?";
 
-        try (Connection connection = DatabaseConnection.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, advertisement.getTitle());
@@ -113,7 +113,7 @@ public class AdvertisementDao {
     public void delete(Long id, Long userId) throws WebTaskException {
         String sql = "DELETE FROM advertisements WHERE id = ? AND user_id = ?";
 
-        try (Connection connection = DatabaseConnection.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setLong(1, id);
@@ -133,7 +133,7 @@ public class AdvertisementDao {
     public void updateStatus(Long id, AdvertisementStatus status) throws WebTaskException {
         String sql = "UPDATE advertisements SET status = ? WHERE id = ?";
 
-        try (Connection connection = DatabaseConnection.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, status.name());
@@ -146,7 +146,7 @@ public class AdvertisementDao {
     }
 
     private List<Advertisement> executeQuery(String sql) throws WebTaskException {
-        try (Connection connection = DatabaseConnection.getConnection();
+        try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
 
