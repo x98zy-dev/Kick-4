@@ -64,6 +64,10 @@ public class AdvertisementController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         String action = getAction(request);
 
         try {
@@ -116,7 +120,7 @@ public class AdvertisementController extends HttpServlet {
 
         List<Advertisement> ads = advertisementService.getUserAdvertisements(user);
         request.setAttribute("advertisements", ads);
-        request.getRequestDispatcher("/WEB-INF/views/ads/my-list.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/ads/my-ads.jsp").forward(request, response);
     }
 
     private void showAdDetails(HttpServletRequest request, HttpServletResponse response)
