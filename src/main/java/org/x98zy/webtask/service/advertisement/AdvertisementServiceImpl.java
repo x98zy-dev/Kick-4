@@ -1,4 +1,4 @@
-package org.x98zy.webtask.service;
+package org.x98zy.webtask.service.advertisement;
 
 import org.x98zy.webtask.dao.AdvertisementDao;
 import org.x98zy.webtask.model.Advertisement;
@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class AdvertisementService {
+public class AdvertisementServiceImpl implements AdvertisementService {
     private final AdvertisementDao advertisementDao;
-    private static final Logger logger = LoggerFactory.getLogger(AdvertisementService.class);
+    private static final Logger logger = LoggerFactory.getLogger(AdvertisementServiceImpl.class);
 
-    public AdvertisementService(AdvertisementDao advertisementDao) {
+    public AdvertisementServiceImpl(AdvertisementDao advertisementDao) {
         this.advertisementDao = advertisementDao;
     }
 

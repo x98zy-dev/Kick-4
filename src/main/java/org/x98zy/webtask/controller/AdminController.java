@@ -1,6 +1,6 @@
 package org.x98zy.webtask.controller;
 
-import org.x98zy.webtask.service.AdvertisementService;
+import org.x98zy.webtask.service.advertisement.AdvertisementServiceImpl;
 import org.x98zy.webtask.dao.AdvertisementDao;
 import org.x98zy.webtask.model.Advertisement;
 import org.x98zy.webtask.model.User;
@@ -24,11 +24,11 @@ import java.util.List;
 
 @WebServlet("/admin/*")
 public class AdminController extends HttpServlet {
-    private final AdvertisementService advertisementService;
+    private final AdvertisementServiceImpl advertisementService;
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     public AdminController() {
-        this.advertisementService = new AdvertisementService(new AdvertisementDao());
+        this.advertisementService = new AdvertisementServiceImpl(new AdvertisementDao());
     }
 
     @Override

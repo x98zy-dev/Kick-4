@@ -1,6 +1,6 @@
 package org.x98zy.webtask.controller;
 
-import org.x98zy.webtask.service.UserService;
+import org.x98zy.webtask.service.user.UserServiceImpl;
 import org.x98zy.webtask.dao.UserDao;
 import org.x98zy.webtask.model.User;
 import org.x98zy.webtask.exception.WebTaskException;
@@ -18,11 +18,11 @@ import java.util.Optional;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
 
     public LoginServlet() {
-        this.userService = new UserService(new UserDao());
+        this.userService = new UserServiceImpl(new UserDao());
     }
 
     @Override
@@ -46,7 +46,8 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("user", user);
                 logger.info("User {} logged in successfully", username);
                 response.sendRedirect(request.getContextPath() + "/");
-            } else {
+            }
+            else {
                 request.setAttribute("error", "Invalid username or password");
                 request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
             }

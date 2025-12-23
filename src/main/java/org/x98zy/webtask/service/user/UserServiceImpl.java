@@ -1,4 +1,4 @@
-package org.x98zy.webtask.service;
+package org.x98zy.webtask.service.user;
 
 import org.x98zy.webtask.dao.UserDao;
 import org.x98zy.webtask.model.User;
@@ -9,11 +9,11 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
-public class UserService {
+public class UserServiceImpl implements UserService {
     private final UserDao userDao;
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    public UserService(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
